@@ -1,5 +1,7 @@
 package com.mycompany.tamikowilliamsinvestmentcalculator;
 
+import com.mycompany.tamikowilliamsinvestmentcalculator.model.InvestmentCalculator;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -11,5 +13,16 @@ public class FutureValueTest {
     @Test
     public void addition_isCorrect() throws Exception {
         assertEquals(4, 2 + 2);
+    }
+    @Test
+    public void calculates_isNormalValues() throws Exception {
+        //InvestmentCalulator i = new InvestmentCalculator();
+        //int result = i.toString(0);
+        //assertEqual("", result);
+    }
+
+    @Test
+    public void calculates_isOddValues()throws Exception {
+        //assertEqual();
     }
 }
