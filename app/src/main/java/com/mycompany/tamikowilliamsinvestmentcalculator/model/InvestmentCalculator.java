@@ -6,23 +6,26 @@ package com.mycompany.tamikowilliamsinvestmentcalculator.model;
 public class InvestmentCalculator {
     private Double payment;
     private Double rate;
-    private Double period;
-    private Double total;
+    private Integer period;
+    private Double futureValue;
 
     public InvestmentCalculator() {
-        this.payment = 0.0;
+        this.payment = 0.00;
         this.rate = 0.0;
-        this.period = 0.0;
+        this.period = 0;
+        this.futureValue = 0.0;
     }
-    public void futureValue(double rate, double period, double payment) {
-        double futureValue = 0;
+    public Double calculateFutureValueTotal() {
+
         if(rate == 0)  {
             futureValue = payment;
         } else if(period == 0) {
             futureValue = payment;
         } else {
-            futureValue = payment*(Math.pow(1 + rate, period)-1)/(rate);
+            futureValue = payment*(Math.pow(1 + rate/100, period)-1)/(rate/100);
+            futureValue = ((double) Math.round(futureValue*100))/100;
         }
+        return futureValue;
     }
 
     public Double getPayment() {
@@ -41,19 +44,19 @@ public class InvestmentCalculator {
         this.rate = rate;
     }
 
-    public Double getPeriod() {
+    public Integer getPeriod() {
         return period;
     }
 
-    public void setPeriod(Double period) {
+    public void setPeriod(Integer period) {
         this.period = period;
     }
 
-    public Double getTotal() {
-        return total;
+    public Double getFutureValue() {
+        return futureValue;
     }
 
-    public void setTotal(Double total) {
-        this.total = total;
+    public void setFutureValue(Double futureValue) {
+        this.futureValue = futureValue;
     }
 }

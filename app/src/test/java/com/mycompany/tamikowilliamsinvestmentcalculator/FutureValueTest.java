@@ -10,21 +10,36 @@ package com.mycompany.tamikowilliamsinvestmentcalculator;
  * To work on unit tests, switch the Test Artifact in the Build Variants view.
  */
 public class FutureValueTest {
+
     @Test
     public void addition_isCorrect() throws Exception {
         assertEquals(4, 2 + 2);
     }
     @Test
     public void calculates_isNormalValues() throws Exception {
-       // InvestmentCalulator i = new InvestmentCalculator();
-        //int result = i.toString(0);
-        //assertEqual(futureValue, result);
+        InvestmentCalculator i = new InvestmentCalculator();
+        i.setRate(6.0);
+        i.setPeriod(10);
+        i.setPayment(300.00);
+        i.calculateFutureValueTotal();
+        String result = i.getFutureValue().toString();
+        assertEquals("3954.24", result);
+
     }
 
     @Test
     public void calculates_isOddValues()throws Exception {
-        //InvestmentCalulator i = new InvestmentCalculator();
-       // int result = i.string(0);
-        //assertEqual(futureValue%2, 1);
+    InvestmentCalculator i = new InvestmentCalculator();
+    i.setRate(0.0);
+    i.setPeriod(10);
+    i.setPayment(300.0);
+    i.calculateFutureValueTotal();
+    String result = i.getFutureValue().toString();
+    assertEquals("300.0", result);
+    i.setRate(6.0);
+    i.setPeriod(0);
+    i.calculateFutureValueTotal();
+    result = i.getFutureValue().toString();
+    assertEquals("300.0", result);
     }
 }
