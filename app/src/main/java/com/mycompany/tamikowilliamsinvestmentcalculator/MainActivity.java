@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,7 +29,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    public void didTapCalculateButton(View view) {
+        EditText calculateEditText =
+                (EditText) findViewById(R.id.payment_edit_text);
 
+        String name = calculateEditText.getText().toString();
+        String total = String.format(name);
+
+        TextView messageTextView =
+                (TextView) findViewById(R.id.message_text_view);
+
+        messageTextView.setText(total);
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

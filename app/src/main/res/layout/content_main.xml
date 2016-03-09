@@ -12,4 +12,136 @@
     tools:context="com.mycompany.tamikowilliamsinvestmentcalculator.MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <EditText
+        android:id="@+id/payment_edit_text"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:background="#797878"
+        android:layout_toRightOf="@+id/paymentTextView"
+        android:textSize="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="#ffffff"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Payment"
+        android:id="@+id/paymentTextView"
+        android:textSize="30dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="20dp"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/rate_edit_text"
+        android:textColor="#ffffff"
+        android:background="#030303"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/rate_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:layout_below="@id/payment_edit_text"
+        android:layout_alignLeft="@+id/payment_edit_text"
+        android:layout_alignStart="@+id/payment_edit_text"
+        android:background="#8e8d8d"
+        android:textSize="30dp"
+        android:textColor="#ffffff"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Rate"
+        android:id="@+id/rateTextView"
+        android:textSize="30dp"
+        android:layout_alignBottom="@+id/rate_edit_text"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/payment_edit_text"
+        android:layout_toStartOf="@+id/payment_edit_text"
+        android:textColor="#ffffff"
+        android:background="#040404"
+        android:gravity="center" />
+
+    <Button
+        android:id="@+id/calculate_button"
+        android:text="@string/calculate_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="didTapCalculateButton"
+        android:layout_below="@+id/message_text_view"
+        android:layout_alignRight="@+id/message_text_view"
+        android:layout_alignEnd="@+id/message_text_view" />
+
+    <TextView
+        android:id="@+id/message_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:layout_below="@+id/period_edit_text"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/period_edit_text"
+        android:layout_alignStart="@+id/period_edit_text"
+        android:background="#494848"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Period"
+        android:id="@+id/periodTextView2"
+        android:layout_alignBottom="@+id/period_edit_text"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="30dp"
+        android:textColor="#ffffff"
+        android:layout_toLeftOf="@+id/message_text_view"
+        android:layout_toStartOf="@+id/message_text_view"
+        android:background="#030303"
+        android:gravity="center" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/period_edit_text"
+        android:layout_below="@+id/rate_edit_text"
+        android:layout_toRightOf="@+id/paymentTextView"
+        android:layout_alignRight="@+id/rate_edit_text"
+        android:layout_alignEnd="@+id/rate_edit_text"
+        android:background="#b6b5b5"
+        android:textSize="30dp"
+        android:textColor="#ffffff"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="="
+        android:id="@+id/equalTextView"
+        android:layout_below="@+id/period_edit_text"
+        android:layout_alignRight="@+id/periodTextView2"
+        android:layout_alignEnd="@+id/periodTextView2"
+        android:textSize="30dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="#030303"
+        android:textColor="#ffffff"
+        android:gravity="center" />
+
+
 </RelativeLayout>
