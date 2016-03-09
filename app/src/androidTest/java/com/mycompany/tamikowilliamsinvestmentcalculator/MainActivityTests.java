@@ -20,18 +20,39 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
     }
     public void testCalculator() {
         MainActivity activity = getActivity();
-        final EditText nameEditText =
-                (EditText) activity.findViewById(R.id.payment_edit_text);
+        final EditText paymentEditText = (EditText) activity.findViewById(R.id.payment_edit_text);
+        final EditText rateEditText = (EditText) activity.findViewById(R.id.rate_edit_text);
+        final EditText periodEditText = (EditText) activity.findViewById(R.id.period_edit_text);
 
         getInstrumentation().runOnMainSync(new Runnable() {
             @Override
             public void run() {
-                nameEditText.requestFocus();
+                paymentEditText.requestFocus();
             }
         });
 
         getInstrumentation().waitForIdleSync();
         getInstrumentation().sendStringSync("1000.00");
+
+        getInstrumentation().runOnMainSync(new Runnable() {
+            @Override
+            public void run() {
+                rateEditText.requestFocus();
+            }
+        });
+
+        getInstrumentation().waitForIdleSync();
+        getInstrumentation().sendStringSync("3.4");
+
+        getInstrumentation().runOnMainSync(new Runnable() {
+            @Override
+            public void run() {
+                periodEditText.requestFocus();
+            }
+        });
+
+        getInstrumentation().waitForIdleSync();
+        getInstrumentation().sendStringSync("5");
         getInstrumentation().waitForIdleSync();
 
         // Tap "Calculate" button
@@ -46,7 +67,11 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
                 (TextView) activity.findViewById(R.id.message_text_view);
 
         String actualText = calculateMessage.getText().toString();
-        assertEquals("1000.00", actualText);
+        assertEquals("$5351.76", actualText);
+
     }
+
+
+
 
 }

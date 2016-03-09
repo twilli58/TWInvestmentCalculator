@@ -11,7 +11,10 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.mycompany.tamikowilliamsinvestmentcalculator.model.InvestmentCalculator;
+
 public class MainActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,16 +33,49 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void didTapCalculateButton(View view) {
-        EditText calculateEditText =
-                (EditText) findViewById(R.id.payment_edit_text);
+        EditText paymentText = (EditText) findViewById(R.id.payment_edit_text);
+        EditText rateText = (EditText) findViewById(R.id.rate_edit_text);
+        EditText periodText = (EditText) findViewById(R.id.period_edit_text);
+        String name, rate, period;
+        Double payment, rateValue;
+        int periodValue;
 
-        String name = calculateEditText.getText().toString();
-        String total = String.format(name);
+        name = paymentText.getText().toString();
+        rate = rateText.getText().toString();
+        period = periodText.getText().toString();
+
+        if(name.length() == 0) {
+            paymentText.setError("Payment is empty");
+            return;
+        }
+
+        if(rate.length() == 0) {
+            rateText.setError("Rate is empty");
+            return;
+        }
+
+        if(period.length() == 0) {
+            periodText.setError("Period is empty");
+            return;
+        }
+
+        payment = Double.parseDouble(name);
+        rateValue = Double.parseDouble(rate);
+        periodValue = Integer.parseInt(period);
+
+        InvestmentCalculator i = new InvestmentCalculator();
+        i.setRate(rateValue);
+        i.setPeriod(periodValue);
+        i.setPayment(payment);
+        i.calculateFutureValueTotal();
+        String result = i.getFutureValue().toString();
 
         TextView messageTextView =
                 (TextView) findViewById(R.id.message_text_view);
 
-        messageTextView.setText(total);
+        //The app will display the calculated future value to 2 decimal places,with commas,prefixed by a dollar
+        //sign, like $1,146,387.93 $1146387.93
+        messageTextView.setText("$" + result);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
