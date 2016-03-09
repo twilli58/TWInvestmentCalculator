@@ -18,14 +18,15 @@ public class FutureValueTest {
     @Test
     public void calculates_isNormalValues() throws Exception {
         InvestmentCalculator i = new InvestmentCalculator();
-        i.setRate(6.0);
+        i.setRate(3.0);
         i.setPeriod(10);
-        i.setPayment(300.00);
+        i.setPayment(1000.00);
         i.calculateFutureValueTotal();
         String result = i.getFutureValue().toString();
-        assertEquals("3954.24", result);
+        assertEquals("11463.88", result);
 
     }
+    @Test
     public void calculates_isNormalValuesPercents() throws Exception {
         InvestmentCalculator i = new InvestmentCalculator();
         i.setRate(3.4);
@@ -44,7 +45,7 @@ public class FutureValueTest {
         i.setPayment(1000.0);
         i.calculateFutureValueTotal();
         String result = i.getFutureValue().toString();
-        assertEquals("1000.0", result);
+        assertEquals("10000.0", result);
     }
     @Test
     public void calculates_isOddValuesInPeriod()throws Exception {
@@ -55,5 +56,25 @@ public class FutureValueTest {
         i.calculateFutureValueTotal();
         String result = i.getFutureValue().toString();
         assertEquals("400.0", result);
+    }
+    @Test
+    public void calculates_isOddValuesInPayment()throws Exception {
+        InvestmentCalculator i = new InvestmentCalculator();
+        i.setRate(0.3);
+        i.setPeriod(5);
+        i.setPayment(0.0);
+        i.calculateFutureValueTotal();
+        String result = i.getFutureValue().toString();
+        assertEquals("0.0", result);
+    }
+    @Test
+    public void calculates_isOddValuesInAll()throws Exception {
+        InvestmentCalculator i = new InvestmentCalculator();
+        i.setRate(0.0);
+        i.setPeriod(0);
+        i.setPayment(0.0);
+        i.calculateFutureValueTotal();
+        String result = i.getFutureValue().toString();
+        assertEquals("0.0", result);
     }
 }

@@ -18,8 +18,10 @@ public class InvestmentCalculator {
     public Double calculateFutureValueTotal() {
 
         if(rate == 0)  {
-            futureValue = payment;
+            futureValue = payment * period;
         } else if(period == 0) {
+            futureValue = payment;
+        } else if(payment == 0) {
             futureValue = payment;
         } else {
             futureValue = payment*(Math.pow(1 + rate/100, period)-1)/(rate/100);
