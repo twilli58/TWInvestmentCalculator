@@ -26,6 +26,7 @@ public class InvestmentCalculator {
         } else {
             futureValue = payment*(Math.pow(1 + rate/100, period)-1)/(rate/100);
             futureValue = ((double) Math.round(futureValue*100))/100;
+
         }
         return futureValue;
     }

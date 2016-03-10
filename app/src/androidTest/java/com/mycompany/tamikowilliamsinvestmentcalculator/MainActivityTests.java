@@ -61,7 +61,7 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
                 (TextView) activity.findViewById(R.id.message_text_view);
 
         String actualText = calculateMessage.getText().toString();
-        assertEquals("$ 5351.76", actualText);
+        assertEquals("$ 5,351.76", actualText);
 
     }
 
@@ -155,7 +155,7 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
                 (TextView) activity.findViewById(R.id.message_text_view);
 
         String actualText = calculateMessage.getText().toString();
-        assertEquals("$ 1800.72", actualText);
+        assertEquals("$ 1,800.72", actualText);
 
     }
     public void testPeriodMissingData() {

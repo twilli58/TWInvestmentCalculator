@@ -8,13 +8,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.mycompany.tamikowilliamsinvestmentcalculator.model.InvestmentCalculator;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Currency;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     String name, rate, period;
@@ -68,20 +71,41 @@ public class MainActivity extends AppCompatActivity {
         this.investmentCalcSet();
 
     }
-    //helper method to call and set investment Calculator
+    //helper method to call and format investment Calculator
     private void investmentCalcSet() {
         InvestmentCalculator i = new InvestmentCalculator();
         i.setRate(rateValue);
         i.setPeriod(periodValue);
         i.setPayment(payment);
         i.calculateFutureValueTotal();
-        String result = i.getFutureValue().toString();
+        String result = formatAnswer(i.getFutureValue());
+
         TextView messageTextView =
                 (TextView) findViewById(R.id.message_text_view);
 
-        //The app will display the calculated future value to 2 decimal places,with commas,prefixed by a dollar
-        //sign, like $1,146,387.93 $1146387.93
         messageTextView.setText("\u0024 " + result);
+
+    }
+
+    private String formatAnswer(Double result) {
+        int num = result.intValue();
+        Double numTemp = result*100;
+        numTemp = numTemp - num*100;
+        int frac = numTemp.intValue();
+        System.out.println(frac);
+        String answer = "";
+        while(num/1000 > 0) {
+            if(num%1000 == 0) {
+                answer = ",000" + answer;
+            } else if(num%1000 < 10) {
+                answer = ",00" + num%1000 + answer;
+            } else if(num%1000 < 100) {
+                answer = ",0" + num%1000 + answer;
+            } else answer = "," + String.valueOf(num%1000) + answer;
+            num = num/1000;
+        }
+        answer = String.valueOf(num) + answer;
+        return answer + "." + String.valueOf(frac);
     }
 
     @Override
