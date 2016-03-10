@@ -13,8 +13,13 @@ import android.widget.TextView;
 
 import com.mycompany.tamikowilliamsinvestmentcalculator.model.InvestmentCalculator;
 
-public class MainActivity extends AppCompatActivity {
+import java.text.NumberFormat;
+import java.util.Currency;
 
+public class MainActivity extends AppCompatActivity {
+    String name, rate, period;
+    Double payment, rateValue;
+    int periodValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,26 +41,23 @@ public class MainActivity extends AppCompatActivity {
         EditText paymentText = (EditText) findViewById(R.id.payment_edit_text);
         EditText rateText = (EditText) findViewById(R.id.rate_edit_text);
         EditText periodText = (EditText) findViewById(R.id.period_edit_text);
-        String name, rate, period;
-        Double payment, rateValue;
-        int periodValue;
 
         name = paymentText.getText().toString();
         rate = rateText.getText().toString();
         period = periodText.getText().toString();
 
         if(name.length() == 0) {
-            paymentText.setError("Payment is empty");
+            paymentText.setError("Please enter payment amount");
             return;
         }
 
         if(rate.length() == 0) {
-            rateText.setError("Rate is empty");
+            rateText.setError("Please enter a Rate");
             return;
         }
 
         if(period.length() == 0) {
-            periodText.setError("Period is empty");
+            periodText.setError("Please enter Period");
             return;
         }
 
@@ -63,20 +65,25 @@ public class MainActivity extends AppCompatActivity {
         rateValue = Double.parseDouble(rate);
         periodValue = Integer.parseInt(period);
 
+        this.investmentCalcSet();
+
+    }
+    //helper method to call and set investment Calculator
+    private void investmentCalcSet() {
         InvestmentCalculator i = new InvestmentCalculator();
         i.setRate(rateValue);
         i.setPeriod(periodValue);
         i.setPayment(payment);
         i.calculateFutureValueTotal();
         String result = i.getFutureValue().toString();
-
         TextView messageTextView =
                 (TextView) findViewById(R.id.message_text_view);
 
         //The app will display the calculated future value to 2 decimal places,with commas,prefixed by a dollar
         //sign, like $1,146,387.93 $1146387.93
-        messageTextView.setText("$" + result);
+        messageTextView.setText("\u0024 " + result);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -98,4 +105,5 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
